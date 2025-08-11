@@ -1,17 +1,48 @@
+# PyCharm
 /.idea
+.idea/
+
+# dotenv
 *.env
 !.env.example
-/projectenv/
 .env
-tests.py
-/__pycache__/
-pytest.ini*.pyc
-*.db
-*.zip
-/azure.txt
-/app.
+
+# virtual env
+.venv/
+env/
+venv/
+venv.bak/
+/projectenv/
+
+# Python cache
+__pycache__/
 *.pyc
+*.pyo
+*.pyd
+
+# tests
+tests.py
+
+# pytest
+pytest.ini
+
+# databases
+*.db
+*.sqlite3
+
+# logs
+*.log
+
+# archives
+*.zip
+
+# azure
+/azure.txt
+
+# images
 *.jpg
 *.PNG
+
+# documents
 Information/
 *.docx
