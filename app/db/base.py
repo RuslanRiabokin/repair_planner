@@ -1,10 +1,27 @@
+# app/db/base.py
+
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
-from sqlalchemy.orm import sessionmaker
-from app.config import DATABASE_URL
+from sqlalchemy.orm import sessionmaker, declarative_base
+from app.config import settings
 
-engine = create_async_engine(DATABASE_URL, echo=True)
-SessionLocal = sessionmaker(engine, expire_on_commit=False, class_=AsyncSession)
+# Створюємо асинхронний двигун для підключення до БД
+engine = create_async_engine(
+    settings.database_url,
+    echo=True,  # лог SQL у консоль (вимкнути на проді)
+    future=True
+)
 
+# Створюємо фабрику сесій
+AsyncSessionLocal = sessionmaker(
+    bind=engine,
+    class_=AsyncSession,
+    expire_on_commit=False
+)
+
+# Базовий клас для всіх моделей
+Base = declarative_base()
+
+# Залежність для FastAPI — отримає сесію та закриє її після використання
 async def get_db():
-    async with SessionLocal() as session:
+    async with AsyncSessionLocal() as session:
         yield session
