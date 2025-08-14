@@ -13,4 +13,5 @@ pytest.ini*.pyc
 *.jpg
 *.PNG
 Information/
+Information_2/
 *.docx
